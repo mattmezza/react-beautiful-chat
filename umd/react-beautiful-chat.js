@@ -1,5 +1,5 @@
 /*!
- * react-chat-window v1.1.1
+ * react-beautiful-chat v1.0.0 - https://mattmezza.github.io/react-beautiful-chat/
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
