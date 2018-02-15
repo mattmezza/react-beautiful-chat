@@ -1,7 +1,7 @@
 {
-  "name": "react-chat-window",
-  "version": "1.1.1",
-  "description": "react-live-chat React component",
+  "name": "react-beautiful-chat",
+  "version": "1.0.0",
+  "description": "A simple and beautiful React chat component backend agnostic and with Emoji and File support.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -35,11 +35,11 @@
     "react-dom": "15.6.1"
   },
   "author": "",
-  "homepage": "",
+  "homepage": "https://mattmezza.github.io/react-beautiful-chat/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kingofthestack/react-live-chat.git"
+    "url": "https://github.com/mattmezza/react-beautiful-chat.git"
   },
   "keywords": [
     "react-component"
