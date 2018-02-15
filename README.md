@@ -7,7 +7,7 @@
 <a href="https://www.npmjs.com/package/react-beautiful-chat" target="\_parent">
   <img alt="" src="https://img.shields.io/npm/dm/react-beautiful-chat.svg" />
 </a>
-<a href="https://github.com/kingofthestack/react-beautiful-chat" target="\_parent">
+<a href="https://github.com/mattmezza/react-beautiful-chat" target="\_parent">
   <img alt="" src="https://img.shields.io/github/stars/mattmezza/react-beautiful-chat.svg?style=social&label=Star" />
 </a>
 
