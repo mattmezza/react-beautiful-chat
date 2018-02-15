@@ -11,7 +11,7 @@
   <img alt="" src="https://img.shields.io/github/stars/mattmezza/react-beautiful-chat.svg?style=social&label=Star" />
 </a>
 
-<div style="width:100%;height:0;padding-bottom:139%;position:relative;"><iframe src="https://giphy.com/embed/3ohs4wE4DqXw84xAMo" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p>
+![gif](https://media.giphy.com/media/3ohs4wE4DqXw84xAMo/giphy.gif)
 
 ## Features
 
