@@ -90,9 +90,10 @@ class UserInput extends Component {
             ref={(e) => { this.userInput = e; }}
             onKeyDown={this.handleKey.bind(this)}
             contentEditable="true"
+            suppressContentEditableWarning="true"
             placeholder="Write a reply..."
             className="sc-user-input--text"
-          >
+          >{this.props.userInput || ''}
           </div>
           <div className="sc-user-input--buttons">
             <div className="sc-user-input--button"></div>
@@ -115,6 +116,7 @@ class UserInput extends Component {
 }
 
 UserInput.propTypes = {
+  userInput: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
   showFile: PropTypes.bool

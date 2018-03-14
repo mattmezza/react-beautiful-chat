@@ -60,6 +60,7 @@ class Demo extends Component {
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
+        userInput='This is a default text, not a placeholder, try to Submit me.'
         messageList={this.state.messageList}
         newMessagesCount={this.state.newMessagesCount}
         handleClick={this._handleClick.bind(this)}

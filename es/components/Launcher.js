@@ -49,6 +49,7 @@ var Launcher = function (_Component) {
         React.createElement('img', { className: "sc-closed-icon", src: launcherIcon })
       ),
       React.createElement(ChatWindow, {
+        userInput: this.props.userInput,
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
         agentProfile: this.props.agentProfile,
@@ -75,6 +76,7 @@ var MessageCount = function MessageCount(props) {
 };
 
 Launcher.propTypes = process.env.NODE_ENV !== "production" ? {
+  userInput: PropTypes.string,
   onMessageWasReceived: PropTypes.func,
   onMessageWasSent: PropTypes.func,
   newMessagesCount: PropTypes.number,

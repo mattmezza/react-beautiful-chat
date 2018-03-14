@@ -35,13 +35,27 @@ class ChatWindow extends Component {
           messages={messageList}
           imageUrl={this.props.agentProfile.imageUrl}
         />
-        <UserInput showEmoji={this.props.showEmoji} onSubmit={this.onUserInputSubmit.bind(this)} showFile={this.props.showFile} />
+        <UserInput
+          userInput={this.props.userInput}
+          showEmoji={this.props.showEmoji}
+          onSubmit={this.onUserInputSubmit.bind(this)}
+          showFile={this.props.showFile}
+        />
       </div>
     );
   }
 }
 
 ChatWindow.propTypes = {
+  agentProfile: PropTypes.shape({
+    teamName: PropTypes.string,
+    imageUrl: PropTypes.string
+  }),
+  userInput: PropTypes.string,
+  onClose: PropTypes.func,
+  onUserInputSubmit: PropTypes.func,
+  messageList: PropTypes.arrayOf(PropTypes.object),
+  isOpen: PropTypes.bool,
   showEmoji: PropTypes.bool,
   showFile: PropTypes.bool
 }

@@ -106,23 +106,28 @@ var UserInput = function (_Component) {
       React.createElement(
         'form',
         { className: 'sc-user-input ' + (this.state.inputActive ? 'active' : '') },
-        React.createElement('div', {
-          role: 'button',
-          tabIndex: '0',
-          onFocus: function onFocus() {
-            _this2.setState({ inputActive: true });
+        React.createElement(
+          'div',
+          {
+            role: 'button',
+            tabIndex: '0',
+            onFocus: function onFocus() {
+              _this2.setState({ inputActive: true });
+            },
+            onBlur: function onBlur() {
+              _this2.setState({ inputActive: false });
+            },
+            ref: function ref(e) {
+              _this2.userInput = e;
+            },
+            onKeyDown: this.handleKey.bind(this),
+            contentEditable: 'true',
+            suppressContentEditableWarning: 'true',
+            placeholder: 'Write a reply...',
+            className: 'sc-user-input--text'
           },
-          onBlur: function onBlur() {
-            _this2.setState({ inputActive: false });
-          },
-          ref: function ref(e) {
-            _this2.userInput = e;
-          },
-          onKeyDown: this.handleKey.bind(this),
-          contentEditable: 'true',
-          placeholder: 'Write a reply...',
-          className: 'sc-user-input--text'
-        }),
+          this.props.userInput || ''
+        ),
         React.createElement(
           'div',
           { className: 'sc-user-input--buttons' },
@@ -153,6 +158,7 @@ var UserInput = function (_Component) {
 }(Component);
 
 UserInput.propTypes = process.env.NODE_ENV !== "production" ? {
+  userInput: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
   showFile: PropTypes.bool
