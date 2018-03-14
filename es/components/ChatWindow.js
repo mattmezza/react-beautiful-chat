@@ -42,7 +42,12 @@ var ChatWindow = function (_Component) {
         messages: messageList,
         imageUrl: this.props.agentProfile.imageUrl
       }),
-      React.createElement(UserInput, { showEmoji: this.props.showEmoji, onSubmit: this.onUserInputSubmit.bind(this), showFile: this.props.showFile })
+      React.createElement(UserInput, {
+        userInput: this.props.userInput,
+        showEmoji: this.props.showEmoji,
+        onSubmit: this.onUserInputSubmit.bind(this),
+        showFile: this.props.showFile
+      })
     );
   };
 
@@ -50,6 +55,15 @@ var ChatWindow = function (_Component) {
 }(Component);
 
 ChatWindow.propTypes = process.env.NODE_ENV !== "production" ? {
+  agentProfile: PropTypes.shape({
+    teamName: PropTypes.string,
+    imageUrl: PropTypes.string
+  }),
+  userInput: PropTypes.string,
+  onClose: PropTypes.func,
+  onUserInputSubmit: PropTypes.func,
+  messageList: PropTypes.arrayOf(PropTypes.object),
+  isOpen: PropTypes.bool,
   showEmoji: PropTypes.bool,
   showFile: PropTypes.bool
 } : {};

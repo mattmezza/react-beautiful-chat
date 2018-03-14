@@ -9929,7 +9929,12 @@ var ChatWindow = function (_Component) {
         messages: messageList,
         imageUrl: this.props.agentProfile.imageUrl
       }),
-      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__UserInput__["a" /* default */], { showEmoji: this.props.showEmoji, onSubmit: this.onUserInputSubmit.bind(this), showFile: this.props.showFile })
+      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__UserInput__["a" /* default */], {
+        userInput: this.props.userInput,
+        showEmoji: this.props.showEmoji,
+        onSubmit: this.onUserInputSubmit.bind(this),
+        showFile: this.props.showFile
+      })
     );
   };
 
@@ -9937,6 +9942,15 @@ var ChatWindow = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
 ChatWindow.propTypes = {
+  agentProfile: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
+    teamName: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
+    imageUrl: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string
+  }),
+  userInput: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
+  onClose: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
+  onUserInputSubmit: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
+  messageList: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.object),
+  isOpen: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.bool,
   showEmoji: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.bool,
   showFile: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.bool
 };
@@ -10060,6 +10074,7 @@ var Launcher = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('img', { className: "sc-closed-icon", src: __WEBPACK_IMPORTED_MODULE_3__assets_logo_no_bg_svg___default.a })
       ),
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ChatWindow__["a" /* default */], {
+        userInput: this.props.userInput,
         messageList: this.props.messageList,
         onUserInputSubmit: this.props.onMessageWasSent,
         agentProfile: this.props.agentProfile,
@@ -10086,6 +10101,7 @@ var MessageCount = function MessageCount(props) {
 };
 
 Launcher.propTypes = {
+  userInput: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
   onMessageWasReceived: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
   onMessageWasSent: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
   newMessagesCount: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
@@ -10440,23 +10456,28 @@ var UserInput = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'form',
         { className: 'sc-user-input ' + (this.state.inputActive ? 'active' : '') },
-        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', {
-          role: 'button',
-          tabIndex: '0',
-          onFocus: function onFocus() {
-            _this2.setState({ inputActive: true });
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'div',
+          {
+            role: 'button',
+            tabIndex: '0',
+            onFocus: function onFocus() {
+              _this2.setState({ inputActive: true });
+            },
+            onBlur: function onBlur() {
+              _this2.setState({ inputActive: false });
+            },
+            ref: function ref(e) {
+              _this2.userInput = e;
+            },
+            onKeyDown: this.handleKey.bind(this),
+            contentEditable: 'true',
+            suppressContentEditableWarning: 'true',
+            placeholder: 'Write a reply...',
+            className: 'sc-user-input--text'
           },
-          onBlur: function onBlur() {
-            _this2.setState({ inputActive: false });
-          },
-          ref: function ref(e) {
-            _this2.userInput = e;
-          },
-          onKeyDown: this.handleKey.bind(this),
-          contentEditable: 'true',
-          placeholder: 'Write a reply...',
-          className: 'sc-user-input--text'
-        }),
+          this.props.userInput || ''
+        ),
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           'div',
           { className: 'sc-user-input--buttons' },
@@ -10487,6 +10508,7 @@ var UserInput = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
 UserInput.propTypes = {
+  userInput: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
   onSubmit: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func.isRequired,
   showEmoji: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.bool,
   showFile: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.bool
