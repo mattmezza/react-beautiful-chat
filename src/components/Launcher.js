@@ -38,6 +38,7 @@ class Launcher extends Component {
           <img className={"sc-closed-icon"} src={launcherIcon} />
         </div>
         <ChatWindow
+          userInput={this.props.userInput}
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           agentProfile={this.props.agentProfile}
@@ -61,6 +62,7 @@ const MessageCount = (props) => {
 }
 
 Launcher.propTypes = {
+  userInput: PropTypes.string,
   onMessageWasReceived: PropTypes.func,
   onMessageWasSent: PropTypes.func,
   newMessagesCount: PropTypes.number,
