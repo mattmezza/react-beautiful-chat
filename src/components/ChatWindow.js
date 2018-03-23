@@ -34,6 +34,7 @@ class ChatWindow extends Component {
         <MessageList
           messages={messageList}
           imageUrl={this.props.agentProfile.imageUrl}
+          onDelete={this.props.onDelete}
         />
         <UserInput
           showEmoji={this.props.showEmoji}

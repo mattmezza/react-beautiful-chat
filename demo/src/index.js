@@ -19,12 +19,14 @@ class Demo extends Component {
       newMessagesCount: 0,
       isOpen: false
     };
+    this.lastId = messageHistory[messageHistory.length - 1].id
   }
 
   _onMessageWasSent(message) {
     this.setState({
-      messageList: [...this.state.messageList, message]
+      messageList: [...this.state.messageList, {id: this.lastId + 1, ...message}]
     })
+    this.lastId += 1
   }
 
   _sendMessage(text) {
@@ -33,11 +35,13 @@ class Demo extends Component {
       this.setState({
         newMessagesCount: newMessagesCount,
         messageList: [...this.state.messageList, {
+          id: this.lastId + 1,
           author: 'them',
           type: 'text',
           data: { text }
         }]
       })
+      this.lastId += 1
     }
   }
 
@@ -50,6 +54,10 @@ class Demo extends Component {
 
   onKeyPress = (userInput) => {
     console.log(userInput)
+  }
+
+  onDelete = (msg) => {
+    this.setState({messageList: this.state.messageList.filter(({id}) => id!==msg.id)})
   }
 
   render() {
@@ -69,6 +77,7 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         onKeyPress={this.onKeyPress}
+        onDelete={this.onDelete}
         showEmoji
         showFile
       />

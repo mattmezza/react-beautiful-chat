@@ -100,6 +100,7 @@ Launcher props:
 | showEmoji | bool | A bool indicating whether or not to show the emoji button
 | showFile | bool | A bool indicating whether or not to show the file chooser button
 | onKeyPress | func | A function `(userInput) => console.log(userInput)` used to do something with the user input. The function is invoked debounced at 300ms
+| onDelete | func | A function `(msg) => console.log(msg)` used to delete a sent message. If this props is set, a delete button will be shown in the top right corner of each message sent by the user to a partner. You can set any property on the message object (an `id` property for instance) and then use this property to call some backend api to delete the message.
 
 
 ### Message Objects

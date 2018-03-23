@@ -116,6 +116,33 @@
   color: #5d5e6d;
 }
 
+.delete-message {
+  font-style: normal;
+  font-size: 10px;
+  line-height: 16px;
+  position: absolute;
+  top: -5px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  right: -5px;
+  cursor: pointer;
+  color: #fff;
+  background: #4e8cff;
+  border: 0;
+  border-radius: 50%;
+}
+
+.delete-message:hover {
+  color: #c8cad0;
+}
+
+.delete-message:focus, .delete-message:active {
+  border: 0;
+  outline: 0;
+}
+
 .icon-file-message {
   margin-right: 5px;
 }

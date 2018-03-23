@@ -47,6 +47,7 @@ class Launcher extends Component {
           showFile={this.props.showFile}
           onKeyPress={this.props.onKeyPress}
           onKeyPressDebounce={this.props.onKeyPressDebounce}
+          onDelete={this.props.onDelete}
         />
       </div>
     );
@@ -71,7 +72,8 @@ Launcher.propTypes = {
   messageList: PropTypes.arrayOf(PropTypes.object),
   showEmoji: PropTypes.bool,
   showFile: PropTypes.bool,
-  onKeyPress: PropTypes.func
+  onKeyPress: PropTypes.func,
+  onDelete: PropTypes.func
 };
 
 Launcher.defaultProps = {
