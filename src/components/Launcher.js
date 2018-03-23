@@ -45,6 +45,8 @@ class Launcher extends Component {
           onClose={this.handleClick.bind(this)}
           showEmoji={this.props.showEmoji}
           showFile={this.props.showFile}
+          onKeyPress={this.props.onKeyPress}
+          onKeyPressDebounce={this.props.onKeyPressDebounce}
         />
       </div>
     );
@@ -68,13 +70,12 @@ Launcher.propTypes = {
   handleClick: PropTypes.func,
   messageList: PropTypes.arrayOf(PropTypes.object),
   showEmoji: PropTypes.bool,
-  showFile: PropTypes.bool
+  showFile: PropTypes.bool,
+  onKeyPress: PropTypes.func
 };
 
 Launcher.defaultProps = {
-  newMessagesCount: 0,
-  showEmoji: true,
-  showFile: true
+  newMessagesCount: 0
 }
 
 export default Launcher;

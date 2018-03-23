@@ -15,6 +15,6 @@ export default [
   { type: 'text', author: "them", data: { text: "No story?" } },
   { type: 'file', author: "them", data: { text: "No forget the story. ", file: { name: 'file.mp3', url: '#' } } },
   { type: 'file', author: "me", data: { text: "What about this one instead?? ", file: { name: 'song.mp3', url: '#' } } },
-  { type: 'text', author: "them", data: { text: "You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. ", meta: 'Read' } },
+  { type: 'text', author: "them", data: { text: "Open up the dev tools and go to the console section to check some cool events attached to the component", meta: 'Read' } },
   { type: 'emoji', author: "me", data: { emoji: "😋" } },
 ]

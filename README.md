@@ -99,6 +99,7 @@ Launcher props:
 | messageList | [message] | An array of message objects to be rendered as a conversation. |
 | showEmoji | bool | A bool indicating whether or not to show the emoji button
 | showFile | bool | A bool indicating whether or not to show the file chooser button
+| onKeyPress | func | A function `(userInput) => console.log(userInput)` used to do something with the user input. The function is invoked debounced at 300ms
 
 
 ### Message Objects

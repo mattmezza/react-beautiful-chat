@@ -1,33 +1,37 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
-import SendIcon from './icons/SendIcon';
-import EmojiIcon from './icons/EmojiIcon';
-import EmojiPicker from './emoji-picker/EmojiPicker';
-import FileIcons from './icons/FileIcon';
-import closeIcon from '../assets/close.svg';
-import genericFileIcon from '../assets/file.svg';
-
+import SendIcon from './icons/SendIcon'
+import EmojiIcon from './icons/EmojiIcon'
+import EmojiPicker from './emoji-picker/EmojiPicker'
+import FileIcons from './icons/FileIcon'
+import closeIcon from '../assets/close.svg'
+import genericFileIcon from '../assets/file.svg'
+import _ from 'lodash'
 
 class UserInput extends Component {
 
   constructor() {
-    super();
+    super()
     this.state = {
       inputActive: false,
       file: null
-    };
-  }
-
-  handleKey(event) {
-    if (event.keyCode === 13 && !event.shiftKey) {
-      this._submitText(event);
     }
   }
 
+  handleKey = (event) => {
+    if (event.keyCode === 13 && !event.shiftKey) {
+      this._submitText(event)
+    }
+  }
+
+  handleKeyPress = _.debounce(() => {
+    this.props.onKeyPress(this.userInput.textContent)
+  }, 300, {trailing: true})
+
   _submitText(event) {
-    event.preventDefault();
-    const text = this.userInput.textContent;
+    event.preventDefault()
+    const text = this.userInput.textContent
     const file = this.state.file
     if (file) {
       if (text && text.length > 0) {
@@ -35,15 +39,15 @@ class UserInput extends Component {
           author: 'me',
           type: 'file',
           data: { text, file }
-        });
+        })
         this.setState({ file: null })
-        this.userInput.innerHTML = '';
+        this.userInput.innerHTML = ''
       } else {
         this.props.onSubmit({
           author: 'me',
           type: 'file',
           data: { file }
-        });
+        })
         this.setState({ file: null })
       }
     } else {
@@ -52,8 +56,8 @@ class UserInput extends Component {
           author: 'me',
           type: 'text',
           data: { text }
-        });
-        this.userInput.innerHTML = '';
+        })
+        this.userInput.innerHTML = ''
       }
     }
   }
@@ -63,7 +67,7 @@ class UserInput extends Component {
       author: 'me',
       type: 'emoji',
       data: { emoji }
-    });
+    })
   }
 
   _handleFileSubmit(file) {
@@ -85,10 +89,11 @@ class UserInput extends Component {
           <div
             role="button"
             tabIndex="0"
-            onFocus={() => { this.setState({ inputActive: true }); }}
-            onBlur={() => { this.setState({ inputActive: false }); }}
-            ref={(e) => { this.userInput = e; }}
-            onKeyDown={this.handleKey.bind(this)}
+            onFocus={() => { this.setState({ inputActive: true }) }}
+            onBlur={() => { this.setState({ inputActive: false }) }}
+            ref={(e) => { this.userInput = e }}
+            onKeyDown={this.handleKey}
+            onKeyPress={this.handleKeyPress}
             contentEditable="true"
             placeholder="Write a reply..."
             className="sc-user-input--text"
@@ -110,14 +115,20 @@ class UserInput extends Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
 UserInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFile: PropTypes.bool
-};
+  showFile: PropTypes.bool,
+  onKeyPress: PropTypes.func
+}
 
-export default UserInput;
+UserInput.defaultProps = {
+  showEmoji: true,
+  showFile: true
+}
+
+export default UserInput

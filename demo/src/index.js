@@ -48,6 +48,10 @@ class Demo extends Component {
     })
   }
 
+  onKeyPress = (userInput) => {
+    console.log(userInput)
+  }
+
   render() {
     return <div>
       <Header />
@@ -64,6 +68,7 @@ class Demo extends Component {
         newMessagesCount={this.state.newMessagesCount}
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
+        onKeyPress={this.onKeyPress}
         showEmoji
         showFile
       />
