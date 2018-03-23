@@ -13,6 +13,7 @@ import EmojiPicker from './emoji-picker/EmojiPicker';
 import FileIcons from './icons/FileIcon';
 import closeIcon from '../assets/close.svg';
 import genericFileIcon from '../assets/file.svg';
+import _ from 'lodash';
 
 var UserInput = function (_Component) {
   _inherits(UserInput, _Component);
@@ -22,18 +23,22 @@ var UserInput = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, _Component.call(this));
 
+    _this.handleKey = function (event) {
+      if (event.keyCode === 13 && !event.shiftKey) {
+        _this._submitText(event);
+      }
+    };
+
+    _this.handleKeyPress = _.debounce(function () {
+      _this.props.onKeyPress(_this.userInput.textContent);
+    }, 300, { trailing: true });
+
     _this.state = {
       inputActive: false,
       file: null
     };
     return _this;
   }
-
-  UserInput.prototype.handleKey = function handleKey(event) {
-    if (event.keyCode === 13 && !event.shiftKey) {
-      this._submitText(event);
-    }
-  };
 
   UserInput.prototype._submitText = function _submitText(event) {
     event.preventDefault();
@@ -118,7 +123,8 @@ var UserInput = function (_Component) {
           ref: function ref(e) {
             _this2.userInput = e;
           },
-          onKeyDown: this.handleKey.bind(this),
+          onKeyDown: this.handleKey,
+          onKeyPress: this.handleKeyPress,
           contentEditable: 'true',
           placeholder: 'Write a reply...',
           className: 'sc-user-input--text'
@@ -155,7 +161,13 @@ var UserInput = function (_Component) {
 UserInput.propTypes = process.env.NODE_ENV !== "production" ? {
   onSubmit: PropTypes.func.isRequired,
   showEmoji: PropTypes.bool,
-  showFile: PropTypes.bool
+  showFile: PropTypes.bool,
+  onKeyPress: PropTypes.func
 } : {};
+
+UserInput.defaultProps = {
+  showEmoji: true,
+  showFile: true
+};
 
 export default UserInput;

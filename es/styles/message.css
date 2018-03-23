@@ -37,7 +37,8 @@
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased
+  -webkit-font-smoothing: subpixel-antialiased;
+  position: relative;
 }
 
 .sc-message--content.sent .sc-message--text {
@@ -60,7 +61,8 @@
   font-size: 14px;
   line-height: 1.4;
   white-space: pre-wrap;
-  -webkit-font-smoothing: subpixel-antialiased
+  -webkit-font-smoothing: subpixel-antialiased;
+  position: relative;
 }
 
 .sc-message--content.sent .sc-message--file {
@@ -70,6 +72,7 @@
 }
 
 .sc-message--file-icon {
+  width: 60px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;

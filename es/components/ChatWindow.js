@@ -16,12 +16,14 @@ var ChatWindow = function (_Component) {
   function ChatWindow(props) {
     _classCallCheck(this, ChatWindow);
 
-    return _possibleConstructorReturn(this, _Component.call(this, props));
-  }
+    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
-  ChatWindow.prototype.onUserInputSubmit = function onUserInputSubmit(message) {
-    this.props.onUserInputSubmit(message);
-  };
+    _this.onUserInputSubmit = function (message) {
+      _this.props.onUserInputSubmit(message);
+    };
+
+    return _this;
+  }
 
   ChatWindow.prototype.onMessageReceived = function onMessageReceived(message) {
     this.setState({ messages: [].concat(this.state.messages, [message]) });
@@ -40,9 +42,14 @@ var ChatWindow = function (_Component) {
       }),
       React.createElement(MessageList, {
         messages: messageList,
-        imageUrl: this.props.agentProfile.imageUrl
+        imageUrl: this.props.agentProfile.imageUrl,
+        onDelete: this.props.onDelete
       }),
-      React.createElement(UserInput, { showEmoji: this.props.showEmoji, onSubmit: this.onUserInputSubmit.bind(this), showFile: this.props.showFile })
+      React.createElement(UserInput, {
+        showEmoji: this.props.showEmoji,
+        onSubmit: this.onUserInputSubmit,
+        showFile: this.props.showFile,
+        onKeyPress: this.props.onKeyPress })
     );
   };
 
@@ -51,7 +58,8 @@ var ChatWindow = function (_Component) {
 
 ChatWindow.propTypes = process.env.NODE_ENV !== "production" ? {
   showEmoji: PropTypes.bool,
-  showFile: PropTypes.bool
+  showFile: PropTypes.bool,
+  onKeyPress: PropTypes.func
 } : {};
 
 export default ChatWindow;

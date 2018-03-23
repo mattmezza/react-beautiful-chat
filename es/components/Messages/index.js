@@ -22,11 +22,11 @@ var Message = function (_Component) {
   Message.prototype._renderMessageOfType = function _renderMessageOfType(type) {
     switch (type) {
       case 'text':
-        return React.createElement(TextMessage, this.props.message);
+        return React.createElement(TextMessage, { message: this.props.message, onDelete: this.props.onDelete });
       case 'emoji':
         return React.createElement(EmojiMessage, this.props.message);
       case 'file':
-        return React.createElement(FileMessage, this.props.message);
+        return React.createElement(FileMessage, { onDelete: this.props.onDelete, message: this.props.message });
     }
   };
 

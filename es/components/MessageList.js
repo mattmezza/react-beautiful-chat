@@ -29,7 +29,7 @@ var MessageList = function (_Component) {
           return _this2.scrollList = el;
         } },
       this.props.messages.map(function (message, i) {
-        return React.createElement(Message, { message: message, key: i });
+        return React.createElement(Message, { message: message, key: i, onDelete: _this2.props.onDelete });
       })
     );
   };
