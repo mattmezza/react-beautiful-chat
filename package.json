@@ -1,6 +1,6 @@
 {
   "name": "react-beautiful-chat",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple and beautiful React chat component backend agnostic and with Emoji and File support.",
   "main": "lib/index.js",
   "module": "es/index.js",
