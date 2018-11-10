@@ -1,6 +1,6 @@
 {
   "name": "react-beautiful-chat",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple and beautiful React chat component backend agnostic and with Emoji and File support.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,20 +20,20 @@
     "gh:publish": "nwb build-demo && gh-pages -d demo/dist"
   },
   "dependencies": {
-    "emoji-js": "3.2.2",
-    "gh-pages": "^1.1.0",
+    "emoji-js": "3.4.1",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.5",
-    "prop-types": "15.5.10",
-    "react-highlight.js": "1.0.5",
-    "socket.io-client": "2.0.3"
+    "prop-types": "15.6.2",
+    "react-highlight.js": "1.0.7",
+    "socket.io-client": "2.1.1"
   },
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
-    "nwb": "0.17.x",
-    "react": "15.6.1",
-    "react-dom": "15.6.1"
+    "nwb": "0.23.x",
+    "react": "16.6.1",
+    "react-dom": "16.6.1"
   },
   "author": "",
   "homepage": "https://mattmezza.github.io/react-beautiful-chat/",
