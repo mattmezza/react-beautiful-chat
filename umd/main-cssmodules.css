@@ -1,0 +1,693 @@
+/*!
+ * react-beautiful-chat v1.0.0 - https://mattmezza.github.io/react-beautiful-chat/
+ * MIT Licensed
+ */
+:global .sc-emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  right: 0px;
+  width: 330px;
+  max-height: 215px;
+  -webkit-box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.3);
+          box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.3);
+  background: white;
+  border-radius: 10px;
+  outline: none;
+}
+
+:global .sc-emoji-picker:after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: white;
+  position: absolute;
+  bottom: -6px;
+  right: 30px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+:global .sc-emoji-picker--content {
+  padding: 10px;
+  overflow: auto;
+  width: 100%;
+  max-height: 195px;
+  margin-top: 7px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:global .sc-emoji-picker--category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+:global .sc-emoji-picker--category-title {
+  min-width: 100%;
+  color: #b8c3ca;
+  font-weight: 200;
+  font-size: 13px;
+  margin: 5px;
+  letter-spacing: 1px;
+}
+
+:global .sc-emoji-picker--emoji {
+  margin: 5px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 28px;
+  transition: transform 60ms ease-out,-webkit-transform 60ms ease-out;
+}
+
+:global .sc-emoji-picker--emoji:hover {
+  -webkit-transform: scale(1.4);
+      -ms-transform: scale(1.4);
+          transform: scale(1.4);
+}:global .sc-chat-window {
+  width: 370px;
+  height: calc(100% - 120px);
+  max-height: 590px;
+  position: fixed;
+  right: 25px;
+  bottom: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.3);
+          box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.3);
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+:global .sc-chat-window.closed {
+  opacity: 0;
+  visibility: hidden;
+  bottom: 90px;
+}
+
+:global .sc-message-list {
+  height: 80%;
+  overflow-y: auto;
+  background-color: white;
+  background-size: 100%;
+  padding: 40px 0px;
+}
+
+:global .sc-message--me {
+  text-align: right;
+}
+:global .sc-message--them {
+  text-align: left;
+}
+
+@media (max-width: 450px) {
+  :global .sc-chat-window {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 0px;
+  }
+  :global .sc-chat-window {
+    -webkit-transition: 0.1s ease-in-out;
+    -o-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+  }
+  :global .sc-chat-window.closed {
+    bottom: 0px;
+  }
+}
+:global .sc-launcher {
+  width: 60px;
+  height: 60px;
+  background-color: #4e8cff;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  border-radius: 50%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
+  transition: -webkit-box-shadow 0.2s ease-in-out;
+  -o-transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+}
+
+:global .sc-launcher:before {
+  content: '';
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;  
+  border-radius: 50%;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
+  transition: -webkit-box-shadow 0.2s ease-in-out;
+  -o-transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+}
+
+:global .sc-launcher :global .sc-open-icon,
+:global .sc-launcher :global .sc-closed-icon {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  -webkit-transition: opacity 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+  -o-transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, transform 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+}
+
+:global .sc-launcher :global .sc-closed-icon {
+  -webkit-transition: opacity 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+  -o-transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out, transform 100ms ease-in-out, -webkit-transform 100ms ease-in-out;
+  width: 60px;
+  height: 60px;
+}
+
+:global .sc-launcher :global .sc-open-icon {
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  opacity: 0;
+}
+
+:global .sc-launcher.opened :global .sc-open-icon {
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  opacity: 1;
+}
+
+:global .sc-launcher.opened :global .sc-closed-icon {
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  opacity: 0;
+}
+
+:global .sc-launcher.opened:before {
+  -webkit-box-shadow: 0px 0px 400px 250px rgba(148, 149, 150, 0.2);
+          box-shadow: 0px 0px 400px 250px rgba(148, 149, 150, 0.2);
+}
+
+:global .sc-launcher:hover {
+  -webkit-box-shadow: 0 0px 27px 1.5px rgba(0,0,0,0.2);
+          box-shadow: 0 0px 27px 1.5px rgba(0,0,0,0.2);
+}
+
+:global .sc-new-messsages-count {
+  position: absolute;
+  top: -3px;
+  left: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 50%;
+	width: 22px;
+  height: 22px;
+  background: #ff4646;
+  color: white;
+  text-align: center;
+  margin: auto;
+  font-size: 12px;
+  font-weight: 500;
+}:global .sc-header {
+  background: #4e8cff;
+  min-height: 75px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  color: white;
+  padding: 10px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+          box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+:global .sc-header--img {
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: 10px;
+}
+
+:global .sc-header--team-name {
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+:global .sc-header--team-name:hover {
+  background: #4882ed;
+}
+
+:global .sc-header--close-button {
+  width: 40px;
+  -ms-flex-item-align: center;
+      align-self: center;
+  height: 40px;
+  margin-right: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+:global .sc-header--close-button:hover {
+  background: #4882ed;
+}
+
+:global .sc-header--close-button img {
+  width: 100%;
+  height: 100%;
+  padding: 13px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (max-width: 450px) {
+  :global .sc-header {
+    border-radius: 0px;
+  }
+}:global .sc-message {
+  width: 300px;
+  margin: auto;
+  padding-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+:global .sc-message--content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+:global .sc-message--content.sent {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+:global .sc-message--content.sent :global .sc-message--avatar {
+  display: none;
+}
+
+:global .sc-message--avatar {
+  background-image: url(https://d13yacurqjgara.cloudfront.net/assets/avatar-default-aa2eab7684294781f93bc99ad394a0eb3249c5768c21390163c9f55ea8ef83a4.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-right: 15px;
+}
+
+:global .sc-message--text {
+  padding: 17px 20px;
+  border-radius: 6px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  -webkit-font-smoothing: subpixel-antialiased;
+  position: relative;
+}
+
+:global .sc-message--content.sent :global .sc-message--text {
+  color: white;
+  background-color: #4e8cff;
+  max-width: calc(100% - 120px);
+  word-wrap: break-word;
+}
+
+:global .sc-message--content.received :global .sc-message--text {
+  color: #263238;
+  background-color: #f4f7f9;
+  margin-right: 40px;
+}
+
+:global .sc-message--file {
+  border-radius: 6px;
+  background-color: #4e8cff;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  -webkit-font-smoothing: subpixel-antialiased;
+  position: relative;
+}
+
+:global .sc-message--content.sent :global .sc-message--file {
+  color: white;
+  background-color: #4e8cff;
+  word-wrap: break-word;
+}
+
+:global .sc-message--file-icon {
+  width: 60px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+:global .sc-message--file-icon:hover {
+  opacity: 0.7;
+}
+
+:global .sc-message--file-text {
+  padding: 12px 15px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+:global .sc-message--file-name {
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0;
+  padding-bottom: 12px;
+  font-size: x-small;
+  text-align: center;
+}
+
+:global .sc-message--file-name a {
+  text-decoration: none;
+  color: #ece7e7;
+}
+
+:global .sc-message--file-name a:hover {
+  color: white;
+}
+
+:global .sc-message--content.sent :global .sc-message--file-text {
+  color: white;
+  background-color: #4e8cff;
+  word-wrap: break-word;
+}
+
+:global .sc-message--content.received :global .sc-message--file {
+  color: #263238;
+  background-color: #f4f7f9;
+  margin-right: 40px;
+}
+
+:global .sc-message--content.received :global .sc-message--file-name {
+  color: #000;
+}
+
+:global .sc-message--content.received :global .sc-message--file a {
+  color: rgba(43, 40, 40, 0.7);
+}
+
+:global .sc-message--content.received :global .sc-message--file a:hover {
+  color: #0c0c0c;
+}
+
+:global .sc-message--emoji {
+  font-size: 40px;
+}
+
+:global .sc-message--meta {
+  font-size: xx-small;
+  margin-bottom: -10px;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 450px) {
+  :global .sc-message {
+    width: 80%;
+  }
+}:global .sc-user-input {
+  min-height: 55px;
+  margin: 0px;
+  position: relative;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #f4f7f9;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-transition: background-color .2s ease,-webkit-box-shadow .2s ease;
+  transition: background-color .2s ease,-webkit-box-shadow .2s ease;
+  -o-transition: background-color .2s ease,box-shadow .2s ease;
+  transition: background-color .2s ease,box-shadow .2s ease;
+  transition: background-color .2s ease,box-shadow .2s ease,-webkit-box-shadow .2s ease;
+}
+
+
+:global .sc-user-input--text {
+  width: 300px;
+  resize: none;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 18px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.33;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #565867;
+  -webkit-font-smoothing: antialiased;
+  max-height: 200px;
+  overflow: scroll;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+:global .sc-user-input--text:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: rgba(86, 88, 103, 0.3);
+  outline: none;
+}
+
+:global .sc-user-input--buttons {
+  width: 100px;
+  position: absolute;
+  right: 30px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+:global .sc-user-input--button:first-of-type {
+  width: 40px;
+}
+
+:global .sc-user-input--button {
+  width: 30px;
+  height: 55px;
+  padding-left: 3px;
+  padding-right: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+:global .sc-user-input.active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: white;
+  -webkit-box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
+          box-shadow: 0px -5px 20px 0px rgba(150, 165, 190, 0.2);
+}
+
+:global .sc-user-input--send-icon, :global .sc-user-input--file-icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+      align-self: center;
+  outline: none;
+}
+
+:global .sc-user-input--button label {
+  position: relative;
+  height: 24px;
+  padding-left: 3px;
+  cursor: pointer;
+}
+
+:global .sc-user-input--button label:hover path {
+  fill: rgba(86, 88, 103, 1);
+}
+
+:global .sc-user-input--button input {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+:global .file-container {
+  background-color: #f4f7f9;
+  border-top-left-radius: 10px;
+  padding: 5px 20px;
+  color: #565867;
+}
+
+:global .delete-file-message {
+  font-style: normal;
+  float: right;
+  cursor: pointer;
+  color: #c8cad0;
+}
+
+:global .delete-file-message:hover {
+  color: #5d5e6d;
+}
+
+:global .delete-message {
+  font-style: normal;
+  font-size: 10px;
+  line-height: 16px;
+  position: absolute;
+  top: -5px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  right: -5px;
+  cursor: pointer;
+  color: #fff;
+  background: #4e8cff;
+  border: 0;
+  border-radius: 50%;
+}
+
+:global .delete-message:hover {
+  color: #c8cad0;
+}
+
+:global .delete-message:focus, :global .delete-message:active {
+  border: 0;
+  outline: 0;
+}
+
+:global .icon-file-message {
+  margin-right: 5px;
+}
+
+:global .sc-user-input--send-icon path, :global .sc-user-input--file-icon path {
+  fill: rgba(86, 88, 103, 0.3);
+}
+
+:global .sc-user-input--send-icon:hover path, :global .sc-user-input--file-icon:hover path {
+  fill: rgba(86, 88, 103, 1);
+}
+
+:global .sc-user-input--emoji-icon-wrapper,
+:global .sc-user-input--send-icon-wrapper,
+:global .sc-user-input--file-icon-wrapper {
+  background: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+}
+
+:global .sc-user-input--emoji-icon-wrapper:focus {
+  outline: none;
+}
+
+:global .sc-user-input--emoji-icon {
+  height: 18px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+:global .sc-user-input--emoji-icon path, :global .sc-user-input--emoji-icon circle {
+  fill: rgba(86, 88, 103, 0.3);
+}
+
+:global .sc-user-input--emoji-icon-wrapper:focus :global .sc-user-input--emoji-icon path,
+:global .sc-user-input--emoji-icon-wrapper:focus :global .sc-user-input--emoji-icon circle,
+:global .sc-user-input--emoji-icon.active path,
+:global .sc-user-input--emoji-icon.active circle,
+:global .sc-user-input--emoji-icon:hover path,
+:global .sc-user-input--emoji-icon:hover circle {
+  fill: rgba(86, 88, 103, 1);
+}
